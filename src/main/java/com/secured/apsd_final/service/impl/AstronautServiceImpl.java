@@ -28,11 +28,17 @@ public class AstronautServiceImpl implements AstronautService {
 
     @Override
     public Astronauts saveAstronaut(AstronautDTO astronautDTO) {
-        Set<Satellite> satellites = new HashSet<>(satelliteRepository.findAllById(astronautDTO.getSatelliteIds()));
+        Set<Satellite> satellites = new HashSet<>();
+        for (Long id : astronautDTO.getSatelliteIds()) {
+            Satellite sat = satelliteRepository.findById(id)
+                    .orElseThrow(() -> new AstronautNotFoundException("Satellite not found"));
+            satellites.add(sat);
+        }
 
         ModelMapper mapper = new ModelMapper();
         Astronauts astronaut = new Astronauts();
         mapper.map(astronautDTO, astronaut);
+        astronaut.setSatellites(satellites);
 
         astronautRepository.save(astronaut);
 
@@ -54,7 +60,7 @@ public class AstronautServiceImpl implements AstronautService {
     @Override
     public List<Astronauts> getAstronaut(String sort, String order) {
         Sort.Direction direction = order.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
-        
+
         if (sort.equalsIgnoreCase("experienceYears")) {
             sort = "experienceYear";
         }
