@@ -40,9 +40,9 @@ public class AstronautServiceImpl implements AstronautService {
         mapper.map(astronautDTO, astronaut);
         astronaut.setSatellites(satellites);
 
-        astronautRepository.save(astronaut);
+        astronaut = astronautRepository.save(astronaut);
 
-        return null;
+        return astronaut;
     }
 
     @Override
