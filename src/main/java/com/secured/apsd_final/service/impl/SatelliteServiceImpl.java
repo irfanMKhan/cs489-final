@@ -11,5 +11,5 @@ public class SatelliteServiceImpl implements SatelliteService {
     public SatelliteServiceImpl(SatelliteRepository satelliteRepository) {
         this.satelliteRepository = satelliteRepository;
     }
-    
+
 }
