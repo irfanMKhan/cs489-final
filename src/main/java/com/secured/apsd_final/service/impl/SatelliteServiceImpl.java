@@ -1,5 +1,7 @@
 package com.secured.apsd_final.service.impl;
 
+import com.secured.apsd_final.model.Satellite;
+import com.secured.apsd_final.model.dto.SatelliteDTO;
 import com.secured.apsd_final.repository.SatelliteRepository;
 import com.secured.apsd_final.service.SatelliteService;
 import org.springframework.stereotype.Service;
@@ -12,4 +14,23 @@ public class SatelliteServiceImpl implements SatelliteService {
         this.satelliteRepository = satelliteRepository;
     }
 
+    @Override
+    public Satellite saveSatellite(SatelliteDTO satelliteDTO) {
+        return null;
+    }
+
+    @Override
+    public Satellite getSatellite() {
+        return null;
+    }
+
+    @Override
+    public Satellite updateSatellite(SatelliteDTO satelliteDTO) {
+        return null;
+    }
+
+    @Override
+    public Satellite deleteSatellite(SatelliteDTO satelliteDTO) {
+        return null;
+    }
 }

@@ -10,5 +10,6 @@ public class SatelliteController {
     public SatelliteController(SatelliteService satelliteService) {
         this.satelliteService = satelliteService;
     }
-    
+
+
 }
