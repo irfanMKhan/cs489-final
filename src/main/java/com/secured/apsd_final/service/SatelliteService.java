@@ -10,8 +10,8 @@ public interface SatelliteService {
 
     Satellite getSatellite(Long id);
 
-    Satellite updateSatellite(SatelliteDTO satelliteDTO) throws BadRequestException;
+    Satellite updateSatellite(Long id, SatelliteDTO satelliteDTO) throws BadRequestException;
 
-    Satellite deleteSatellite(SatelliteDTO satelliteDTO);
+    void deleteSatellite(Long id);
 
 }

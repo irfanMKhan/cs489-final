@@ -32,8 +32,8 @@ public class SatelliteServiceImpl implements SatelliteService {
     }
 
     @Override
-    public Satellite updateSatellite(SatelliteDTO satelliteDTO) throws BadRequestException {
-        Satellite sat = satelliteRepository.findById(satelliteDTO.getId())
+    public Satellite updateSatellite(Long id, SatelliteDTO satelliteDTO) throws BadRequestException {
+        Satellite sat = satelliteRepository.findById(id)
                 .orElseThrow(() -> new SatelliteNotFoundException("Satellite not found"));
         if (sat.getDecommissioned()) {
             throw new BadRequestException("Satellite is decommissioned and cannot be updated.");
@@ -45,7 +45,9 @@ public class SatelliteServiceImpl implements SatelliteService {
     }
 
     @Override
-    public Satellite deleteSatellite(SatelliteDTO satelliteDTO) {
-        return null;
+    public void deleteSatellite(Long id) {
+        Satellite satellite = satelliteRepository.findById(id)
+                .orElseThrow(() -> new SatelliteNotFoundException("Satellite not found"));
+        satelliteRepository.delete(satellite);
     }
 }

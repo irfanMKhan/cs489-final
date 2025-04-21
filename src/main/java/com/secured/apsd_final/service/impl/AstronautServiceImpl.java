@@ -1,5 +1,6 @@
 package com.secured.apsd_final.service.impl;
 
+import com.secured.apsd_final.exception.AstronautNotFoundException;
 import com.secured.apsd_final.model.Astronauts;
 import com.secured.apsd_final.model.Satellite;
 import com.secured.apsd_final.model.dto.AstronautDTO;
@@ -7,9 +8,11 @@ import com.secured.apsd_final.repository.AstronautRepository;
 import com.secured.apsd_final.repository.SatelliteRepository;
 import com.secured.apsd_final.service.AstronautService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -42,12 +45,20 @@ public class AstronautServiceImpl implements AstronautService {
     }
 
     @Override
-    public Astronauts deleteAstronaut(AstronautDTO astronautDTO) {
-        return null;
+    public void deleteAstronaut(Long id) {
+        Astronauts astronauts = astronautRepository.findById(id)
+                .orElseThrow(() -> new AstronautNotFoundException("Astronaut not found"));
+        astronautRepository.delete(astronauts);
     }
 
     @Override
-    public Astronauts getAstronaut() {
-        return null;
+    public List<Astronauts> getAstronaut(String sort, String order) {
+        Sort.Direction direction = order.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        
+        if (sort.equalsIgnoreCase("experienceYears")) {
+            sort = "experienceYear";
+        }
+
+        return astronautRepository.findAll(Sort.by(direction, sort));
     }
 }
