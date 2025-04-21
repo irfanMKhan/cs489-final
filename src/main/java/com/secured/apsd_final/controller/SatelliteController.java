@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/v1/satellites")
+
+@RestController
+@RequestMapping("/api/satellite")
 public class SatelliteController {
     private final SatelliteService satelliteService;
 
@@ -19,8 +21,8 @@ public class SatelliteController {
         this.satelliteService = satelliteService;
     }
 
-    @PostMapping
-    public ResponseEntity<Satellite> create(@Valid @RequestBody SatelliteDTO dto) {
+    @PostMapping(value = "")
+    public ResponseEntity<Satellite> createSatellite(@Valid @RequestBody SatelliteDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(satelliteService.saveSatellite(dto));
     }
 
@@ -34,11 +36,11 @@ public class SatelliteController {
 //        return ResponseEntity.ok(satelliteService.getSatellite());
 //    }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        satelliteService.deleteSatellite(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Long id) {
+//        satelliteService.deleteSatellite(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
 }

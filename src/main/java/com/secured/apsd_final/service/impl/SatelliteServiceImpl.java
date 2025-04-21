@@ -22,6 +22,7 @@ public class SatelliteServiceImpl implements SatelliteService {
         sat.setName(satelliteDTO.getName());
         sat.setLaunchDate(satelliteDTO.getLaunchDate());
         sat.setOrbitType(satelliteDTO.getOrbitType());
+        sat.setDecommissioned(satelliteDTO.getDecommissioned());
         return satelliteRepository.save(sat);
     }
 

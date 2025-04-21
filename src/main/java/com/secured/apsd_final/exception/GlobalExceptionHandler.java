@@ -32,6 +32,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
+    @ResponseBody
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseDTO> ex(Exception exception, HttpServletRequest request) {
+
+        return new ResponseEntity<>(
+                new ErrorResponseDTO(Instant.now(), HttpStatus.NOT_FOUND, exception.getMessage(), exception.getMessage(), request.getRequestURI()),
+                HttpStatus.NOT_FOUND);
+
+    }
+
 }
 
 

@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/v1/astronauts")
+@RestController
+@RequestMapping("/api/astronaut")
 public class AstronautController {
 
     private final AstronautService astronautService;
@@ -19,12 +20,12 @@ public class AstronautController {
         this.astronautService = astronautService;
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<Astronauts> create(@Valid @RequestBody AstronautDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(astronautService.saveAstronaut(dto));
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<Astronauts>> getAstronautsSorted(
             @RequestParam(defaultValue = "experienceYears") String sort,
             @RequestParam(defaultValue = "asc") String order) {
@@ -33,10 +34,10 @@ public class AstronautController {
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        astronautService.deleteAstronaut(id);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Long id) {
+//        astronautService.deleteAstronaut(id);
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+//    }
 
 }
