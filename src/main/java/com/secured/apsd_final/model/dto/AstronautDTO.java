@@ -1,9 +1,6 @@
 package com.secured.apsd_final.model.dto;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -26,5 +23,6 @@ public class AstronautDTO {
     @Max(value = 50, message = "Experience year must be at most 50")
     private Integer experienceYear;
 
-    private Set<SatelliteDTO> satellites = new HashSet<>();
+    @NotEmpty
+    private Set<Long> satelliteIds;
 }
