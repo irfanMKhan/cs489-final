@@ -34,10 +34,10 @@ public class AstronautController {
         return ResponseEntity.ok(result);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Long id) {
-//        astronautService.deleteAstronaut(id);
-//        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        astronautService.deleteAstronaut(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
 
 }

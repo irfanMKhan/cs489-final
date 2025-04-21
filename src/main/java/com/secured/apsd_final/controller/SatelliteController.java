@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/satellite")
@@ -31,16 +29,10 @@ public class SatelliteController {
         return ResponseEntity.ok(satelliteService.updateSatellite(id, dto));
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<Satellite>> getAll() {
-//        return ResponseEntity.ok(satelliteService.getSatellite());
-//    }
-
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Long id) {
-//        satelliteService.deleteSatellite(id);
-//        return ResponseEntity.noContent().build();
-//    }
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        satelliteService.deleteSatellite(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
